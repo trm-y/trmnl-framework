@@ -47,6 +47,10 @@
                     padding-bottom: 0;
                 }
             }
+
+            .title_bar {
+                flex-shrink: 0;
+            }
         }
 
         &--quadrant {
