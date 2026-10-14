@@ -1007,6 +1007,13 @@ $_limited-palette-paint-depth: 4;
         @include _map-slot-color-defaults;
     }
 
+    // Dark mode holds base hues still on the color rails, so a semantic label's
+    // ink holds still too instead of flipping onto its unchanged background.
+    .screen[class*="screen--color-"]#{helpers.$theme-exempt} {
+        --framework-hue-label-white-text: var(--white);
+        --framework-hue-label-black-text: var(--black);
+    }
+
     // ── Limited color palettes (actual + preview) ──
     @each $palette-id in vars.$color-palette-limited-ids {
         .screen.screen--color-#{$palette-id},
