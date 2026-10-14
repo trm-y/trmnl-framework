@@ -4,7 +4,7 @@ Short captions and status chips for a plugin screen. Five sizes plus style varia
 
 ### Size and Style Variants
 
-Labels come in several style variants. Each one combines with any size modifier.
+Labels come in several style variants. Each one combines with any size modifier. To compare these sizes with every other element, see Element Sizes .
 
 Small
 

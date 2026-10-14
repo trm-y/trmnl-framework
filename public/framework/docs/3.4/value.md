@@ -4,7 +4,7 @@ Figures and readouts on a plugin screen. Twelve size variants from xxsmall to pe
 
 ### Size Variants
 
-The Value system offers twelve size variants, from XXSmall to Peta.
+The Value system offers twelve size variants, from XXSmall to Peta. To compare these sizes with every other element, see [Element Sizes](/framework/docs/3.4/element_sizes) .
 
 #### Size Ladder
 

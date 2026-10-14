@@ -499,9 +499,9 @@ Implement zero-config column layouts for content organization
 
  Next  [ 
 
-## Title
+## Element Sizes
 
-Style headings with consistent typography
+Every size class of every text element, side by side on one page
 
- ](/framework/docs/3.4/title)
+ ](/framework/docs/3.4/element_sizes)
 

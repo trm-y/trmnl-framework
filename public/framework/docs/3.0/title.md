@@ -4,7 +4,7 @@ Headings for a plugin screen. Five size variants from small to xxlarge, each wit
 
 ### Size Variations
 
-The Title system offers five size variants: small, base (default), large, xlarge, and xxlarge.
+The Title system offers five size variants: small, base (default), large, xlarge, and xxlarge. To compare these sizes with every other element, see Element Sizes .
 
 Small TitleBase TitleLarge TitleExtra Large TitleXXL Title
 

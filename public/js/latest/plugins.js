@@ -300,6 +300,22 @@ function adjustIndexSpanWidths() {
  * - Can clamp any subtree (works inside and outside .columns)
  */
 
+// Clamp sizes are layout pixels: getBoundingClientRect() includes the .screen's transform: scale(--pixel-ratio), so divide it back out.
+function screenTransformScale(element) {
+  const screen = element && element.closest && element.closest('.screen');
+  if (!screen || !screen.offsetWidth) return 1;
+  const scale = Math.round((screen.getBoundingClientRect().width / screen.offsetWidth) * 1000) / 1000;
+  return Number.isFinite(scale) && scale > 0 ? scale : 1;
+}
+
+function widthBeforeScreenScale(element) {
+  return ((element.getBoundingClientRect()?.width) || 0) / screenTransformScale(element);
+}
+
+function heightBeforeScreenScale(element) {
+  return ((element.getBoundingClientRect()?.height) || 0) / screenTransformScale(element);
+}
+
 // Determine available content width for clamping. Works in any layout: grid, flex, or block.
 // When inside a .grid or .flex, use the width of the direct child of that container (the
 // "cell" or "flex item"). The framework sets min-width: 0 on those children so they
@@ -314,16 +330,16 @@ function getAvailableWidthForClamp(element) {
     const isGrid = p.classList && p.classList.contains('grid');
     const isFlex = p.classList && p.classList.contains('flex');
     if (isGrid || isFlex) {
-      const itemW = Math.round((node.getBoundingClientRect()?.width) || 0);
+      const itemW = Math.round(widthBeforeScreenScale(node));
       if (itemW > 0) return itemW;
       if (isGrid) {
-        let gridW = Math.round((p.getBoundingClientRect()?.width) || 0);
+        let gridW = Math.round(widthBeforeScreenScale(p));
         if (gridW === 0) {
           let n = p;
           while (n && n !== document.body) {
             const parent = n.parentElement;
             if (!parent) break;
-            gridW = Math.round(parent.getBoundingClientRect()?.width || 0);
+            gridW = Math.round(widthBeforeScreenScale(parent));
             if (gridW > 0) break;
             n = parent;
           }
@@ -336,13 +352,13 @@ function getAvailableWidthForClamp(element) {
     }
     node = p;
   }
-  const ownWidth = Math.round((element.getBoundingClientRect()?.width) || 0);
+  const ownWidth = Math.round(widthBeforeScreenScale(element));
   if (ownWidth > 0) return ownWidth;
   node = element;
   while (node && node !== document.body) {
     const p = node.parentElement;
     if (!p) break;
-    const w = Math.round(p.getBoundingClientRect().width || 0);
+    const w = Math.round(widthBeforeScreenScale(p));
     if (w > 0) return w;
     node = p;
   }
@@ -380,7 +396,7 @@ function measureSingleLineHeight(element) {
 
   container.appendChild(clone);
   parent.appendChild(container);
-  const height = Math.ceil(clone.getBoundingClientRect().height);
+  const height = Math.ceil(heightBeforeScreenScale(clone));
   parent.removeChild(container);
   return height > 0 ? height : Math.max(1, Math.ceil(parseFloat(computed.fontSize)));
 }
@@ -406,7 +422,7 @@ function measureTextWidthNowrap(element, text, computed) {
   probe.textContent = text;
   container.appendChild(probe);
   parent.appendChild(container);
-  const w = Math.ceil(probe.getBoundingClientRect().width || 0);
+  const w = Math.round(widthBeforeScreenScale(probe));
   parent.removeChild(container);
   return w;
 }
@@ -526,7 +542,7 @@ function clampElementToLines(element, maxLines) {
       probe.textContent = originalTextForRecheck;
       container.appendChild(probe);
       parent.appendChild(container);
-      let hRe = Math.ceil(probe.getBoundingClientRect().height);
+      let hRe = Math.ceil(heightBeforeScreenScale(probe));
       hRe += Math.ceil((parseFloat(computed.marginTop) || 0) + (parseFloat(computed.marginBottom) || 0));
       parent.removeChild(container);
       if (hRe <= maxHeightRe) {
@@ -582,7 +598,7 @@ function clampElementToLines(element, maxLines) {
 
     container.appendChild(probe);
     parent.appendChild(container);
-    let h = Math.ceil(probe.getBoundingClientRect().height);
+    let h = Math.ceil(heightBeforeScreenScale(probe));
     // Include margins to match real-flow height inside content containers
     const mt = parseFloat(computed.marginTop) || 0;
     const mb = parseFloat(computed.marginBottom) || 0;
@@ -4022,6 +4038,7 @@ async function terminalize() {
 
 // WebKit keeps stale flex heights after fitValue's inline font-size change; toggling display rebuilds the render subtree synchronously (no visible flash).
 function forceScreenLayoutRecalculation() {
+  if (navigator.userAgent.includes('Firefox/')) return; // Gecko has no stale flex heights; skipping saves 2-4% of Firefox render CPU.
   document.querySelectorAll('.screen').forEach((screen) => {
     const previousDisplay = screen.style.display;
     screen.style.display = 'none';
@@ -7189,6 +7206,6 @@ window.markFrameworkReady = markFrameworkReady;
 // the minified bundle), so every published /js/<ver>/plugins.js reports its own
 // version and a pinned or cached file is identifiable. A working checkout ships
 // 'source': read window.__TRMNL_BUILD__ when an edit does not show up.
-window.__TRMNL_BUILD__ = 'plugins.js v3.4.0';
+window.__TRMNL_BUILD__ = 'plugins.js v3.4.1';
 debugLog('[TRMNL] Build:', window.__TRMNL_BUILD__);
 })();

@@ -4,7 +4,7 @@ Headings for a plugin screen. Five size variants from small to xxlarge, each wit
 
 ### Size Variations
 
-The Title system offers five size variants: small, base (default), large, xlarge, and xxlarge.
+The Title system offers five size variants: small, base (default), large, xlarge, and xxlarge. To compare these sizes with every other element, see [Element Sizes](/framework/docs/3.4/element_sizes) .
 
 Small TitleBase TitleLarge TitleExtra Large TitleXXL Title
 
@@ -108,11 +108,11 @@ These tokens are automatically mapped to this page by token prefix.
 
  Previous  [ 
 
-## Mashup
+## Element Sizes
 
-Assemble multiple plugin views into a single interface
+Every size class of every text element, side by side on one page
 
- ](/framework/docs/3.4/mashup)
+ ](/framework/docs/3.4/element_sizes)
 
  Next  [ 
 
