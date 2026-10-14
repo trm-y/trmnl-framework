@@ -14,7 +14,7 @@ module Framework
     # fallbacks.
     FAMILIES = {
       'NicoClean' => { files: { 'normal' => 'NicoClean-Regular.ttf' }, size_adjust: 100 },
-      'NicoPups' => { files: { 'normal' => 'NicoPups-Regular.ttf' }, size_adjust: 80 },
+      'NicoPups' => { files: { 'normal' => 'NicoPups-Regular.ttf' }, size_adjust: 67 },
       'BlockKie' => { files: { 'normal' => 'BlockKie.ttf' }, size_adjust: 85 },
       'TRMNL12' => { files: { 'normal' => 'TRMNL12-Regular.ttf', 'bold' => 'TRMNL12-Bold.ttf' }, size_adjust: 85 },
       'TRMNL16' => { files: { 'normal' => 'TRMNL16-Regular.ttf', 'bold' => 'TRMNL16-Bold.ttf' }, size_adjust: 95 },
