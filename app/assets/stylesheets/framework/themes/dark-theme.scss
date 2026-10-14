@@ -385,6 +385,13 @@
         @include _color-full-chart-ramp(tokens.$color-full-chart-series);
     }
 
+    // Base hues hold still on the color rails here too, so a semantic label
+    // keeps the light-mode ink the dark-mode axis gives it (base/_screen-mode-vars.scss).
+    .trmnl .screen--theme-dark[class*="screen--color-"] {
+        --framework-hue-label-white-text: var(--white);
+        --framework-hue-label-black-text: var(--black);
+    }
+
     // The 1-bit rail prices its backdrop separately, exactly as the framework
     // does for unthemed screens (see the screen-backdrop block in
     // base/_screen-mode-vars.scss). gray-45's dither reads as a busy stipple

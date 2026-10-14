@@ -6,6 +6,7 @@ const LABELS = ['primary', 'success', 'error', 'warning'];
 async function labelInks(page, screenClasses) {
   await page.setContent(`<!DOCTYPE html><html><head><meta charset="utf-8">
       <link rel="stylesheet" href="/__semantic-label-ink__/plugins.css">
+      <link rel="stylesheet" href="/__semantic-label-ink__/dark-theme.css">
       <style>.screen { visibility: visible }</style>
     </head><body class="environment trmnl">
       <div class="screen ${screenClasses}">
@@ -26,6 +27,11 @@ test.describe('semantic label ink', () => {
       body: bundle,
       contentType: 'text/css',
     }));
+    const theme = await readBuild('themes/dark-theme.css');
+    await page.route('**/__semantic-label-ink__/dark-theme.css', (route) => route.fulfill({
+      body: theme,
+      contentType: 'text/css',
+    }));
     await page.goto('/framework/test/runtime');
   });
 
@@ -34,6 +40,12 @@ test.describe('semantic label ink', () => {
       const light = await labelInks(page, rail);
 
       expect(await labelInks(page, `${rail} screen--dark-mode`)).toEqual(light);
+    });
+
+    test(`the dark theme keeps label ink on ${rail}, where hues hold still`, async ({ page }) => {
+      const light = await labelInks(page, rail);
+
+      expect(await labelInks(page, `${rail} screen--theme-dark`)).toEqual(light);
     });
   }
 
