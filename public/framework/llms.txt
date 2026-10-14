@@ -106,6 +106,7 @@ TRMNL is a platform for building and displaying content on ePaper screens. The F
 
 ## Elements
 
+- [Element Sizes](https://trmnl.com/framework/docs/3.4/element_sizes.md): Each text element has its own set of sizes, and the sets differ. This page shows every size of every element side by side, so you can see which classes exist before you use one. A class an element does not have does nothing, and the text stays at its default size.
 - [Title](https://trmnl.com/framework/docs/3.4/title.md): Headings for a plugin screen. Five size variants from small to xxlarge, each with responsive prefixes for breakpoints and orientation.
 - [Value](https://trmnl.com/framework/docs/3.4/value.md): Figures and readouts on a plugin screen. Twelve size variants from xxsmall to peta, plus value--tnums for tabular numbers that keep columns aligned.
 - [Label](https://trmnl.com/framework/docs/3.4/label.md): Short captions and status chips for a plugin screen. Five sizes plus style variants (filled, outline, underline, inverted) and semantic variants such as label--success and label--error.

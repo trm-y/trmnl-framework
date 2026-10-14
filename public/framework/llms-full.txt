@@ -5909,7 +5909,7 @@ Utility classes for controlling text size. Each class sets the correct font fami
 
 ### Text Size Utilities
 
-Use `text--{size}` utility classes to set font family, size, line-height, and smoothing in one declaration. Density decides which font family the utility resolves to.
+Use `text--{size}` utility classes to set font family, size, line-height, and smoothing in one declaration. Density decides which font family the utility resolves to. To compare these sizes with every other element, see [Element Sizes](/framework/docs/3.4/element_sizes) .
 
 - **Low-density displays:** the three smallest sizes use the active pixel-font bundle (Classic NicoPups/NicoClean/BlockKie or TRMNL TRMNL12/16/21). 
 - **High-density displays:** every text size uses Inter Variable, regardless of bundle. 
@@ -15614,6 +15614,131 @@ Implement zero-config column layouts for content organization
 
  Next  [ 
 
+## Element Sizes
+
+Every size class of every text element, side by side on one page
+
+ ](/framework/docs/3.4/element_sizes)
+
+
+
+---
+
+# Element Sizes
+
+Each text element has its own set of sizes, and the sets differ. This page shows every size of every element side by side, so you can see which classes exist before you use one. A class an element does not have does nothing, and the text stays at its default size.
+
+### Size Grid
+
+Each row is one element and each column is one size name, from smallest to largest. Add the size class next to the element class, as in `value value--large`.
+
+The same size name is a different size on each element: `value--xlarge` is much larger than `title--xlarge`.
+
+| Element | xxsmall | xsmall | small | base | large | xlarge | xxlarge | xxxlarge | mega | giga | tera | peta |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| [Title](/framework/docs/3.4/title) | Not available | Not available | 
+Aa`title--small`
+ | 
+Aa`title--base`
+ | 
+Aa`title--large`
+ | 
+Aa`title--xlarge`
+ | 
+Aa`title--xxlarge`
+ | Not available | Not available | Not available | Not available | Not available |
+| [Value](/framework/docs/3.4/value) | 
+Aa`value--xxsmall`
+ | 
+Aa`value--xsmall`
+ | 
+Aa`value--small`
+ | 
+Aa`value--base`
+ | 
+Aa`value--large`
+ | 
+Aa`value--xlarge`
+ | 
+Aa`value--xxlarge`
+ | 
+Aa`value--xxxlarge`
+ | 
+Aa`value--mega`
+ | 
+Aa`value--giga`
+ | 
+Aa`value--tera`
+ | 
+Aa`value--peta`
+ |
+| [Label](/framework/docs/3.4/label) | Not available | Not available | 
+Aa`label--small`
+ | 
+Aa`label--base`
+ | 
+Aa`label--large`
+ | 
+Aa`label--xlarge`
+ | 
+Aa`label--xxlarge`
+ | Not available | Not available | Not available | Not available | Not available |
+| [Description](/framework/docs/3.4/description) | Not available | Not available | Not available | 
+Aa`description--base`
+ | 
+Aa`description--large`
+ | 
+Aa`description--xlarge`
+ | 
+Aa`description--xxlarge`
+ | Not available | Not available | Not available | Not available | Not available |
+| [Rich Text](/framework/docs/3.4/rich_text) | Not available | Not available | 
+Aa`content--small`
+ | 
+Aa`content--base`
+ | 
+Aa`content--large`
+ | 
+Aa`content--xlarge`
+ | 
+Aa`content--xxlarge`
+ | 
+Aa`content--xxxlarge`
+ | Not available | Not available | Not available | Not available |
+| [Text Size](/framework/docs/3.4/text_size) | Not available | Not available | 
+Aa`text--small`
+ | 
+Aa`text--base`
+ | 
+Aa`text--large`
+ | 
+Aa`text--xlarge`
+ | 
+Aa`text--xxlarge`
+ | 
+Aa`text--xxxlarge`
+ | 
+Aa`text--mega`
+ | 
+Aa`text--giga`
+ | 
+Aa`text--tera`
+ | 
+Aa`text--peta`
+ |
+
+Every size class also takes the `lg:`, `portrait:`, and `lg:portrait:` prefixes, for example `lg:portrait:value--xlarge`. See [Responsive](/framework/docs/3.4/responsive) .
+
+ Previous  [ 
+
+## Mashup
+
+Assemble multiple plugin views into a single interface
+
+ ](/framework/docs/3.4/mashup)
+
+ Next  [ 
+
 ## Title
 
 Style headings with consistent typography
@@ -15630,7 +15755,7 @@ Headings for a plugin screen. Five size variants from small to xxlarge, each wit
 
 ### Size Variations
 
-The Title system offers five size variants: small, base (default), large, xlarge, and xxlarge.
+The Title system offers five size variants: small, base (default), large, xlarge, and xxlarge. To compare these sizes with every other element, see [Element Sizes](/framework/docs/3.4/element_sizes) .
 
 Small TitleBase TitleLarge TitleExtra Large TitleXXL Title
 
@@ -15734,11 +15859,11 @@ These tokens are automatically mapped to this page by token prefix.
 
  Previous  [ 
 
-## Mashup
+## Element Sizes
 
-Assemble multiple plugin views into a single interface
+Every size class of every text element, side by side on one page
 
- ](/framework/docs/3.4/mashup)
+ ](/framework/docs/3.4/element_sizes)
 
  Next  [ 
 
@@ -15758,7 +15883,7 @@ Figures and readouts on a plugin screen. Twelve size variants from xxsmall to pe
 
 ### Size Variants
 
-The Value system offers twelve size variants, from XXSmall to Peta.
+The Value system offers twelve size variants, from XXSmall to Peta. To compare these sizes with every other element, see [Element Sizes](/framework/docs/3.4/element_sizes) .
 
 #### Size Ladder
 
@@ -16088,7 +16213,7 @@ Short captions and status chips for a plugin screen. Five sizes plus style varia
 
 ### Size and Style Variants
 
-Labels come in several style variants. Each one combines with any size modifier.
+Labels come in several style variants. Each one combines with any size modifier. To compare these sizes with every other element, see [Element Sizes](/framework/docs/3.4/element_sizes) .
 
 Small
 
@@ -16483,7 +16608,7 @@ Supporting body text, sized to sit under a Title or a Value rather than compete 
 
 ### Size Variants
 
-Descriptions come in four size variants. Pick the one that matches the weight the line should carry in the content hierarchy.
+Descriptions come in four size variants. Pick the one that matches the weight the line should carry in the content hierarchy. To compare these sizes with every other element, see [Element Sizes](/framework/docs/3.4/element_sizes) .
 
 Base
 
@@ -16903,6 +17028,8 @@ Right alignment can be used for captions, sidebars, or to create visual interest
 ### Content Size Variants
 
 The Rich Text component offers six size variants: `small`, `base`, `large`, `xlarge`, `xxlarge`, and `xxxlarge`. The `content` class without size modifiers and the `content--base` class produce the same visual result, so use `content--base` when you need to set the base size explicitly in responsive contexts. All size variants support responsive prefixes like `sm:`, `md:`, `lg:`, and `portrait:`.
+
+To compare these sizes with every other element, see [Element Sizes](/framework/docs/3.4/element_sizes) .
 
 This is xxxlarge size rich text content.
 

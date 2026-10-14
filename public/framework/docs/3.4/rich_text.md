@@ -96,6 +96,8 @@ Right alignment can be used for captions, sidebars, or to create visual interest
 
 The Rich Text component offers six size variants: `small`, `base`, `large`, `xlarge`, `xxlarge`, and `xxxlarge`. The `content` class without size modifiers and the `content--base` class produce the same visual result, so use `content--base` when you need to set the base size explicitly in responsive contexts. All size variants support responsive prefixes like `sm:`, `md:`, `lg:`, and `portrait:`.
 
+To compare these sizes with every other element, see [Element Sizes](/framework/docs/3.4/element_sizes) .
+
 This is xxxlarge size rich text content.
 
 This is xxlarge size rich text content.

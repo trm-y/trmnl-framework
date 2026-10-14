@@ -4,7 +4,7 @@ Supporting body text, sized to sit under a Title or a Value rather than compete 
 
 ### Size Variants
 
-Descriptions come in four size variants. Pick the one that matches the weight the line should carry in the content hierarchy.
+Descriptions come in four size variants. Pick the one that matches the weight the line should carry in the content hierarchy. To compare these sizes with every other element, see Element Sizes .
 
 Base
 

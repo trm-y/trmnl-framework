@@ -4,7 +4,7 @@ Utility classes for controlling text size. Each class sets the correct font fami
 
 ### Text Size Utilities
 
-Use `text--{size}` utility classes to set font family, size, line-height, and smoothing in one declaration. Density decides which font family the utility resolves to.
+Use `text--{size}` utility classes to set font family, size, line-height, and smoothing in one declaration. Density decides which font family the utility resolves to. To compare these sizes with every other element, see [Element Sizes](/framework/docs/3.4/element_sizes) .
 
 - **Low-density displays:** the three smallest sizes use the active pixel-font bundle (Classic NicoPups/NicoClean/BlockKie or TRMNL TRMNL12/16/21). 
 - **High-density displays:** every text size uses Inter Variable, regardless of bundle. 
