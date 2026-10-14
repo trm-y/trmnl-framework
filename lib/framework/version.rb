@@ -11,6 +11,12 @@ module Framework
   class Version
     include Comparable
 
+    # Released with one-line data-clamp cutting text that fits on TRMNL X and Kobo (fixed in 3.4.1).
+    # Their plugins.min.js stays frozen; pins load a copy with only that fix (rake framework:releases:patch_js).
+    PATCHED_JS_VERSIONS = %w[2.3.7 3.0.0 3.0.2 3.0.3 3.1.0 3.1.1 3.1.2 3.1.3 3.1.4 3.1.5 3.1.6 3.1.7 3.1.8 3.2.0 3.3.0 3.3.1
+                             3.3.2 3.4.0].freeze
+    PATCHED_JS_FILE = "plugins.patch-1.min.js".freeze
+
     attr_reader :number
 
     def self.config_path
@@ -86,7 +92,7 @@ module Framework
     def js_url
       return self.class.development_asset_url("plugins.js") if self.class.development_mode?
 
-      "#{asset_host}/js/#{@number}/plugins.min.js"
+      "#{asset_host}/js/#{@number}/#{PATCHED_JS_VERSIONS.include?(@number) ? PATCHED_JS_FILE : 'plugins.min.js'}"
     end
 
     # Theme stylesheets this version publishes, keyed by theme id. Empty for versions

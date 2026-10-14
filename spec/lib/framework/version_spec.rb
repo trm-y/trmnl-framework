@@ -117,6 +117,14 @@ RSpec.describe Framework::Version do
     it 'points at the version-scoped plugins script' do
       expect(version.js_url).to end_with("/js/#{number}/plugins.min.js")
     end
+
+    context 'with a version released before the one-line clamp fix' do
+      let(:number) { '3.1.1' }
+
+      it 'points at the patched copy, not the frozen bundle' do
+        expect(version.js_url).to end_with('/js/3.1.1/plugins.patch-1.min.js')
+      end
+    end
   end
 
   describe '#theme_css_urls' do
