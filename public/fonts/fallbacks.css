@@ -154,7 +154,7 @@
   font-family: 'NicoPups';
   font-weight: normal;
   src: local('Noto Sans CJK JP'), local('NotoSansCJKjp-Regular');
-  size-adjust: 80%;
+  size-adjust: 67%;
   unicode-range: U+3040-30FF, U+31F0-31FF;
 }
 
@@ -162,7 +162,7 @@
   font-family: 'NicoPups';
   font-weight: normal;
   src: local('Noto Sans CJK SC'), local('NotoSansCJKsc-Regular');
-  size-adjust: 80%;
+  size-adjust: 67%;
   unicode-range: U+3001-303F, U+3400-4DBF, U+4E00-9FFF, U+F900-FAFF, U+FF00-FFEF;
 }
 
@@ -170,7 +170,7 @@
   font-family: 'NicoPups';
   font-weight: normal;
   src: local('Noto Sans CJK KR'), local('NotoSansCJKkr-Regular');
-  size-adjust: 80%;
+  size-adjust: 67%;
   unicode-range: U+1100-11FF, U+3130-318F, U+AC00-D7AF;
 }
 
@@ -178,7 +178,7 @@
   font-family: 'NicoPups';
   font-weight: normal;
   src: local('Loma');
-  size-adjust: 80%;
+  size-adjust: 67%;
   unicode-range: U+0E00-0E7F;
 }
 
@@ -186,7 +186,7 @@
   font-family: 'NicoPups';
   font-weight: normal;
   src: local('Noto Sans Devanagari Regular'), local('NotoSansDevanagari-Regular');
-  size-adjust: 80%;
+  size-adjust: 67%;
   unicode-range: U+0900-097F;
 }
 
@@ -194,7 +194,7 @@
   font-family: 'NicoPups';
   font-weight: normal;
   src: local('Mukti');
-  size-adjust: 80%;
+  size-adjust: 67%;
   unicode-range: U+0980-09FF;
 }
 
@@ -202,7 +202,7 @@
   font-family: 'NicoPups';
   font-weight: normal;
   src: local('Noto Sans Gurmukhi Regular'), local('NotoSansGurmukhi-Regular');
-  size-adjust: 80%;
+  size-adjust: 67%;
   unicode-range: U+0A00-0A7F;
 }
 
@@ -210,7 +210,7 @@
   font-family: 'NicoPups';
   font-weight: normal;
   src: local('Noto Sans Oriya Regular'), local('NotoSansOriya-Regular');
-  size-adjust: 80%;
+  size-adjust: 67%;
   unicode-range: U+0B00-0B7F;
 }
 
@@ -218,7 +218,7 @@
   font-family: 'NicoPups';
   font-weight: normal;
   src: local('Noto Sans Tamil Regular'), local('NotoSansTamil-Regular');
-  size-adjust: 80%;
+  size-adjust: 67%;
   unicode-range: U+0B80-0BFF;
 }
 
@@ -226,7 +226,7 @@
   font-family: 'NicoPups';
   font-weight: normal;
   src: local('Noto Sans Telugu Regular'), local('NotoSansTelugu-Regular');
-  size-adjust: 80%;
+  size-adjust: 67%;
   unicode-range: U+0C00-0C7F;
 }
 
@@ -234,7 +234,7 @@
   font-family: 'NicoPups';
   font-weight: normal;
   src: local('Noto Sans Kannada Regular'), local('NotoSansKannada-Regular');
-  size-adjust: 80%;
+  size-adjust: 67%;
   unicode-range: U+0C80-0CFF;
 }
 
@@ -242,7 +242,7 @@
   font-family: 'NicoPups';
   font-weight: normal;
   src: local('Rachana'), local('Rachana-Regular');
-  size-adjust: 80%;
+  size-adjust: 67%;
   unicode-range: U+0D00-0D7F;
 }
 
@@ -250,7 +250,7 @@
   font-family: 'NicoPups';
   font-weight: normal;
   src: local('Noto Sans Gujarati Regular'), local('NotoSansGujarati-Regular');
-  size-adjust: 80%;
+  size-adjust: 67%;
   unicode-range: U+0A80-0AFF;
 }
 
@@ -258,7 +258,7 @@
   font-family: 'NicoPups';
   font-weight: normal;
   src: local('Noto Sans Sinhala Regular'), local('NotoSansSinhala-Regular');
-  size-adjust: 80%;
+  size-adjust: 67%;
   unicode-range: U+0D80-0DFF;
 }
 
@@ -266,7 +266,7 @@
   font-family: 'NicoPups';
   font-weight: normal;
   src: local('Noto Sans Myanmar Regular'), local('NotoSansMyanmar-Regular');
-  size-adjust: 80%;
+  size-adjust: 67%;
   unicode-range: U+1000-109F;
 }
 
@@ -274,7 +274,7 @@
   font-family: 'NicoPups';
   font-weight: normal;
   src: local('Noto Sans Ethiopic Regular'), local('NotoSansEthiopic-Regular');
-  size-adjust: 80%;
+  size-adjust: 67%;
   unicode-range: U+1200-139F;
 }
 
@@ -282,7 +282,7 @@
   font-family: 'NicoPups';
   font-weight: normal;
   src: local('Noto Sans Khmer Regular'), local('NotoSansKhmer-Regular');
-  size-adjust: 80%;
+  size-adjust: 67%;
   unicode-range: U+1780-17FF, U+19E0-19FF;
 }
 
@@ -290,7 +290,7 @@
   font-family: 'NicoPups';
   font-weight: normal;
   src: local('Tibetan Machine Uni'), local('Tibetan_Machine_Uni');
-  size-adjust: 80%;
+  size-adjust: 67%;
   unicode-range: U+0F00-0FFF;
 }
 
@@ -298,7 +298,7 @@
   font-family: 'NicoPups';
   font-weight: normal;
   src: local('DejaVu Sans'), local('DejaVuSans');
-  size-adjust: 80%;
+  size-adjust: 67%;
   unicode-range: U+00AD, U+017F-0191, U+0193-019F, U+01A2-01AE, U+01B1-01CC, U+01DD-0217, U+021C-0236, U+0238-024F, U+0370-0393, U+0395-03A8, U+03AA-03BB, U+03BD-03BF, U+03C1-06FF, U+0750-077F, U+0E80-0EFF, U+10A0-10FF, U+1E00-1E7F, U+1E86-1E9F, U+1EFA-1EFF, U+FB50-FDFF, U+FE70-FEFF;
 }
 
