@@ -25,8 +25,7 @@ RSpec.describe 'the committed release bundles' do
     css_latest.join('plugins.min.css'),
     js_latest.join('plugins.js'),
     js_latest.join('plugins.min.js')
-  ] + Framework::Themes.ids.map { |id| css_latest.join('themes', "#{id}-theme.css") } +
-            Framework::Version::PATCHED_JS_VERSIONS.map { |number| root.join('public/js', number, Framework::Version::PATCHED_JS_FILE) }
+  ] + Framework::Themes.ids.map { |id| css_latest.join('themes', "#{id}-theme.css") }
 
   # Blink stops registering a rule's selectors part way through a long comma list and drops the
   # rest without warning. It kept the 1,304th and dropped the 1,404th; 1,000 stays below that.
