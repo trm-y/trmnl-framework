@@ -185,3 +185,44 @@ test('leaves the same clamp cache state whether the text fits or is trimmed', as
   expect(widened.lastWidth).toBeGreaterThan(trimmed.lastWidth);
   expectNoUnexpectedErrors(browserSignals, await runtimeSignals(page));
 });
+
+// TRMNL's device render runs JS at --pixel-ratio: 1 and scales only for the screenshot; previews run it scaled.
+const scaledScreens = [['TRMNL OG', [], ''], ['TRMNL X', ['screen--v2'], ''], ['Kobo Libra 2', ['screen--kobo_libra_2'], ''],
+  ['TRMNL X at device render scale', ['screen--v2'], '.screen { --pixel-ratio: 1 !important; }']];
+const shortNames = ['Klingon', "ve'", 'Mary Wollstonecraft', 'London, England, 1792', 'Sulphur Tuft', 'Ella', 'Micah',
+  'Pat', 'The Last Blockbuster', 'Coming Up', 'Daily Tide Chart', 'Spelling Bee', 'Halcyon', 'Raindrop', 'MLS', 'Bin Day'];
+
+for (const [screenName, screenClasses, screenCss] of scaledScreens) {
+  test(`leaves one-line clamps that fit untouched on ${screenName}`, async ({ page }) => {
+    const browserSignals = await openRuntimePage(page);
+    await mountFixture(page, {
+      html: shortNames.map((name, index) => `<div><span class="title" id="short-name-${index}" data-clamp="1">${name}</span></div>`).join(''),
+      css: `div { width: 400px; } ${screenCss}`,
+      screenClasses,
+    });
+
+    await runTerminalize(page);
+
+    const texts = await page.locator('[data-clamp]').evaluateAll((elements) => elements.map((element) => element.textContent));
+    expect(texts).toEqual(shortNames);
+    expectNoUnexpectedErrors(browserSignals, await runtimeSignals(page));
+  });
+
+  test(`clamps a two-line clamp to two lines on ${screenName}`, async ({ page }) => {
+    const browserSignals = await openRuntimePage(page);
+    await mountFixture(page, {
+      html: `<div style="width: 300px"><div id="two-line-clamp" class="description" data-clamp="2">${clampText} ${clampText}</div></div>`,
+      css: screenCss,
+      screenClasses,
+    });
+
+    await runTerminalize(page);
+
+    const result = await page.locator('#two-line-clamp').evaluate((element) => ({
+      text: element.textContent,
+      lines: Math.round(element.offsetHeight / parseFloat(getComputedStyle(element).lineHeight)),
+    }));
+    expect(result).toEqual({ text: expect.stringMatching(/\.\.\.$/), lines: 2 });
+    expectNoUnexpectedErrors(browserSignals, await runtimeSignals(page));
+  });
+}
