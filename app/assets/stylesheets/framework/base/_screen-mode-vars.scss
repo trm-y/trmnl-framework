@@ -13,6 +13,7 @@
 @use 'sass:map';
 @use 'sass:list';
 @use 'sass:math';
+@use 'sass:color';
 @use '../config/tokens' as vars;
 @use '../mixins/background-patterns' as bg;
 @use '../mixins/border-levels' as border-levels;
@@ -55,6 +56,52 @@
     }
 }
 
+// The hex a solid token paints.
+@function _token-hex($token) {
+    @each $source in (vars.$palette-shades-extended, vars.$palette-shades, vars.$color-palette-framework) {
+        @if map.has-key($source, $token) {
+            @return map.get($source, $token);
+        }
+    }
+    @return null;
+}
+
+@function _relative-luminance($hex) {
+    $sum: 0;
+    @each $channel, $weight in ('red': 0.2126, 'green': 0.7152, 'blue': 0.0722) {
+        $value: math.div(color.channel($hex, $channel, $space: rgb), 255);
+        $linear: if($value <= 0.03928, math.div($value, 12.92), math.pow(math.div($value + 0.055, 1.055), 2.4));
+        $sum: $sum + $weight * $linear;
+    }
+    @return $sum;
+}
+
+// Black or white, whichever has the higher contrast on $hex.
+// (L + 0.05) / 0.05 against black beats 1.05 / (L + 0.05) against white
+// exactly when (L + 0.05)^2 > 0.0525.
+@mixin _bg-ink($token, $hex) {
+    @if $hex {
+        $luminance: _relative-luminance($hex);
+        --bg-#{$token}-ink: var(--#{if(math.pow($luminance + 0.05, 2) > 0.0525, 'black', 'white')});
+    } @else {
+        --bg-#{$token}-ink: initial;
+    }
+}
+
+// The color a tile paints: its ink mixed with the field tone at the share
+// of the tile the ink covers.
+@function _tile-painted-hex($spec) {
+    $kind: list.nth($spec, 1);
+    @if $kind == 'solid' {
+        @return list.nth($spec, 2);
+    }
+    $ink: map.get(vars.$dither-tile-inks, list.nth($spec, 2));
+    @if $kind == 'baked' {
+        @return list.nth($ink, 1);
+    }
+    @return color.mix(list.nth($ink, 1), list.nth($spec, 3), list.nth($ink, 2) * 100%);
+}
+
 // --bg-*-solid preserves what the slot border token chains' color position
 // historically saw: transparent in pattern-family blocks, because the PNG
 // tiles carried their light tone in the image, and the real color for solid
@@ -62,8 +109,11 @@
 // (see theme-slots.semantic-border): a border longhand cannot paint a tile.
 // Every branch must declare it, because the base .screen block's value
 // cascades onto the same element, so leaving it unset can't fall through.
-@mixin _bg-tile($token, $spec) {
+// A 1-bit rail leaves the ink unset ($ink: false): text over its dither art
+// keeps its own color, since an average color says little about 1-bit text.
+@mixin _bg-tile($token, $spec, $ink: true) {
     $kind: list.nth($spec, 1);
+    @include _bg-ink($token, if($ink, _tile-painted-hex($spec), null));
     @if $kind == 'solid' {
         --bg-#{$token}-image: none;
         --bg-#{$token}-color: #{list.nth($spec, 2)};
@@ -99,12 +149,14 @@
 }
 
 @mixin _bg-solid($token, $css-var) {
+    @include _bg-ink($token, _token-hex($css-var));
     --bg-#{$token}-image: none;
     --bg-#{$token}-color: var(--#{$css-var});
     --bg-#{$token}-solid: var(--#{$css-var});
 }
 
 @mixin _bg-hex($token, $hex) {
+    @include _bg-ink($token, $hex);
     --bg-#{$token}-image: none;
     --bg-#{$token}-color: #{$hex};
     --bg-#{$token}-solid: #{$hex};
@@ -461,25 +513,26 @@ $_two-bit-tile-families: ('grayscale--2bit', 'grayscale-preview--2bit');
 // water slots paint from. A checkerboard is its own complement, so the dark
 // rails take the same art rather than a mirrored one.
 @mixin _checker-bg-var($specs) {
-    @include _bg-tile('checker', map.get($specs, 'checker'));
+    @include _bg-tile('checker', map.get($specs, 'checker'), $ink: false);
 }
 
 @mixin _grayscale-bg-vars($family, $dark: false) {
     $specs: map.get(vars.$bg-tile-specs, $family);
+    $_ink: not list.index($_one-bit-tile-families, $family);
     @each $shade in vars.$one-bit-shades {
         $img-shade: if($dark, bg.dark-remap-token($shade), $shade);
-        @include _bg-tile($shade, map.get($specs, $img-shade));
+        @include _bg-tile($shade, map.get($specs, $img-shade), $ink: $_ink);
     }
     @if list.index($_one-bit-tile-families, $family) {
         @each $legacy, $_ in vars.$deprecated-to-enhanced-mapping {
             $img-shade: if($dark, bg.dark-remap-token($legacy), $legacy);
-            @include _bg-tile($legacy, map.get($specs, $img-shade));
+            @include _bg-tile($legacy, map.get($specs, $img-shade), $ink: $_ink);
         }
         @include _checker-bg-var($specs);
     } @else if list.index($_two-bit-tile-families, $family) {
         @each $legacy, $enhanced in vars.$deprecated-to-enhanced-mapping {
             $img-shade: if($dark, bg.dark-remap-token($enhanced), $enhanced);
-            @include _bg-tile($legacy, map.get($specs, $img-shade));
+            @include _bg-tile($legacy, map.get($specs, $img-shade), $ink: $_ink);
         }
     }
 }
@@ -512,16 +565,17 @@ $_two-bit-tile-families: ('grayscale--2bit', 'grayscale-preview--2bit');
 // Color token bg vars mapped to grayscale patterns
 @mixin _color-to-gray-bg-vars($family, $dark: false) {
     $specs: map.get(vars.$bg-tile-specs, $family);
+    $_ink: not list.index($_one-bit-tile-families, $family);
     @each $color-token, $gray-token in vars.$color-to-gray-fallback {
         @if $family == 'grayscale' and $dark {
             // 1-bit dark: map through deprecated, then dark-remap (matches original behavior)
             $deprecated: map.get(vars.$extended-to-deprecated-mapping, $gray-token);
             $pattern-shade: if($deprecated, $deprecated, $gray-token);
             $img-shade: bg.dark-remap-token($pattern-shade);
-            @include _bg-tile($color-token, map.get($specs, $img-shade));
+            @include _bg-tile($color-token, map.get($specs, $img-shade), $ink: $_ink);
         } @else {
             $img-shade: if($dark, bg.dark-remap-token($gray-token), $gray-token);
-            @include _bg-tile($color-token, map.get($specs, $img-shade));
+            @include _bg-tile($color-token, map.get($specs, $img-shade), $ink: $_ink);
         }
     }
 }

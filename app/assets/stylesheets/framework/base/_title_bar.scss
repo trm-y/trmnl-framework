@@ -30,6 +30,7 @@
         padding: 0 calc(var(--gap) * var(--framework-layout-title-bar-padding-factor, 1));
         gap: var(--gap);
         position: relative;
+        @include mixins.canvas-text;
         color: var(--framework-slot-title-bar-text-solid, var(--framework-semantic-text-primary-text-solid, var(--framework-semantic-text-primary-text-color, var(--framework-text-primary))));
         z-index: 10;
         border-radius: var(--title-bar-border-radius);

@@ -110,6 +110,8 @@
     --framework-semantic-text-primary-text-clip: var(--text-black-clip, border-box);
     --framework-semantic-text-primary-text-under: var(--text-black-under, transparent);
     --framework-semantic-text-primary-text-solid: var(--stroke-black-color, var(--black));
+    --framework-canvas-text-color: var(--framework-semantic-text-primary-text-color);
+    --framework-canvas-text-solid: var(--framework-semantic-text-primary-text-solid);
     --framework-semantic-text-secondary-text-color: var(--text-gray-30-color, var(--gray-30));
     --framework-semantic-text-secondary-text-image: var(--text-gray-30-image, none);
     --framework-semantic-text-secondary-text-clip: var(--text-gray-30-clip, border-box);

@@ -146,6 +146,7 @@
                     background-color: var(--framework-slot-table-meta-bg-color, transparent);
                     background-image: var(--framework-slot-table-meta-bg-image, none);
                     @include mixins.dither-ready;
+                    @include mixins.canvas-text;
                     border-radius: vars.corner-scaled(3px);
                     position: absolute;
                     top: 0;

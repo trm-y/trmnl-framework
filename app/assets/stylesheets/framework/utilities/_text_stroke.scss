@@ -121,4 +121,12 @@ $text-stroke-sizes: (
     #{$bit-render-selectors} {
         @include text-stroke-apply-from-vars;
     }
+
+    // The halo is the screen's contrast color, so stroked text keeps the
+    // screen's text color rather than the ink of a bg--* class around it.
+    :where([class*="bg--"]) [class*="text-stroke"],
+    [class*="text-stroke"]:where([class*="bg--"]) {
+        @include mixins.canvas-text;
+        color: var(--framework-canvas-text-solid, revert-layer);
+    }
 }

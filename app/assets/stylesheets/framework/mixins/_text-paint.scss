@@ -10,3 +10,10 @@
     -webkit-background-clip: var(--framework-semantic-#{$semantic}-text-clip, #{$clip-fallback});
     background-clip: var(--framework-semantic-#{$semantic}-text-clip, #{$clip-fallback});
 }
+
+// A part that paints its own ground keeps the screen's text color, not the
+// ink of a bg--* class around it.
+@mixin canvas-text {
+    --framework-semantic-text-primary-text-color: var(--framework-canvas-text-color, inherit);
+    --framework-semantic-text-primary-text-solid: var(--framework-canvas-text-solid, inherit);
+}
