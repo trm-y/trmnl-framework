@@ -215,10 +215,13 @@
           <p class="<%= framework_section_description_classes %> mb-4">
             Use <code class="<%= framework_section_code_classes %>">bg--{role}</code> and <code class="<%= framework_section_code_classes %>">text--{role}</code> for intent-based colors. Roles: primary, success, error, warning. See <%= link_to 'Colors', framework_docs_colors_path, class: 'font-medium hover:underline' %> for the full mapping.
           </p>
+          <p class="<%= framework_section_description_classes %> mb-4">
+            Text inside a <code class="<%= framework_section_code_classes %>">bg--*</code> background is black or white, whichever reads better on the color the screen paints. A <code class="<%= framework_section_code_classes %>">text--*</code> class still wins, and 1-bit screens leave the text color as it is.
+          </p>
           <%= render CodeExampleComponent.new(
-            demo_code: '<div class="bg--primary text--white">Primary</div>
-<div class="bg--success text--white">Success</div>
-<div class="bg--error text--white">Error</div>
+            demo_code: '<div class="bg--primary">Primary</div>
+<div class="bg--success">Success</div>
+<div class="bg--error">Error</div>
 <div class="text--warning">Warning text</div>'
           ) %>
         </div>
