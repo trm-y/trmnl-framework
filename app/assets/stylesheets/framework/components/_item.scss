@@ -118,6 +118,7 @@ $_corner-bracket-thickness: vars.ui-scaled(2px);
             background-color: var(--framework-slot-item-meta-bg-color, transparent);
             background-image: var(--framework-slot-item-meta-bg-image, none);
             @include mixins.dither-ready;
+            @include mixins.canvas-text;
             display: flex;
             justify-content: center;
             align-items: center;

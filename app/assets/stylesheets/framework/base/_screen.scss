@@ -187,6 +187,13 @@
 }
 
 @include mixins.trmnl-namespace {
+    // A bg--* class repaints text-primary for its subtree; parts that paint
+    // their own ground restore this copy, taken where text-primary is set.
+    .screen, .inverse {
+        --framework-canvas-text-color: var(--framework-semantic-text-primary-text-color);
+        --framework-canvas-text-solid: var(--framework-semantic-text-primary-text-solid);
+    }
+
     .screen {
         // Device density and the explicit scale modifier are independent inputs.
         // Components consume their product; plugin layout utilities consume only

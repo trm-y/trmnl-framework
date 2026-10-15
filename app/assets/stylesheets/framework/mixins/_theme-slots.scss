@@ -273,6 +273,7 @@ $chart-series-slots: 16;
 @mixin utility-bg($token, $remap-to) {
     --theme-bg-#{$token}-color: var(--bg-#{$remap-to}-color, transparent);
     --theme-bg-#{$token}-image: var(--bg-#{$remap-to}-image, none);
+    --theme-bg-#{$token}-ink: var(--bg-#{$remap-to}-ink);
 }
 
 @mixin utility-text($token, $remap-to) {

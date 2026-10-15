@@ -139,7 +139,10 @@
         <div class="mt-8">
           <%= framework_heading(4, 'Semantic variants') %>
           <p class="<%= framework_section_description_classes %> mb-4">
-            Use <code class="<%= framework_section_code_classes %>">label--primary</code>, <code class="<%= framework_section_code_classes %>">label--success</code>, <code class="<%= framework_section_code_classes %>">label--error</code>, <code class="<%= framework_section_code_classes %>">label--warning</code> for intent-based colors. <code class="<%= framework_section_code_classes %>">label--filled</code> uses black (darkest), success and warning use black text, and warning uses a yellow background. See <%= link_to 'Colors', framework_docs_colors_path, class: 'font-medium hover:underline' %> for the semantic mapping.
+            Use <code class="<%= framework_section_code_classes %>">label--primary</code>, <code class="<%= framework_section_code_classes %>">label--success</code>, <code class="<%= framework_section_code_classes %>">label--error</code>, <code class="<%= framework_section_code_classes %>">label--warning</code> for intent-based colors. <code class="<%= framework_section_code_classes %>">label--filled</code> uses black (darkest), and warning uses a yellow background. See <%= link_to 'Colors', framework_docs_colors_path, class: 'font-medium hover:underline' %> for the semantic mapping.
+          </p>
+          <p class="<%= framework_section_description_classes %> mb-4">
+            Each role's text is black or white, whichever reads better on the color the screen paints. 1-bit screens keep white text on primary and error, and black on success and warning.
           </p>
           <div class="<%= framework_example_classes %>">
             <div class="<%= framework_example_inner_classes %>">

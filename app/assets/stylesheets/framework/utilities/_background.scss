@@ -12,11 +12,21 @@
 @use '../mixins/factorized_utilities' as fz;
 @use 'sass:list';
 
-// Apply background paint from per-element utility vars.
+// Text inside a background takes the given paint; with none (the 1-bit rail
+// sets no ink) it keeps the color it had. A text--* class still wins.
+@mixin apply-bg-text($color, $solid) {
+    --framework-semantic-text-primary-text-color: var(#{$color}, inherit);
+    --framework-semantic-text-primary-text-solid: var(#{$solid}, inherit);
+    color: var(#{$solid}, revert-layer);
+}
+
+// Apply background paint from per-element utility vars, and the ink that
+// paint reads best in to the text inside.
 @mixin apply-bg-paint-vars {
     background-color: var(--tn-bg-color, transparent);
     background-image: var(--tn-bg-image, none);
     background-size: var(--dither-bg-size, auto);
+    @include apply-bg-text(--tn-bg-ink, --tn-bg-ink);
 }
 
 @mixin emit-factorized-bg-variants {
@@ -77,6 +87,7 @@
             @each $name, $value in $vars {
                 #{$name}: #{$value};
             }
+            --tn-bg-ink: var(--theme-bg-#{$class-token}-ink, var(--bg-#{$resolved-token}-ink));
             @include apply-bg-paint-vars;
         }
     }
@@ -90,6 +101,7 @@
         @include responsive.with-dark-all-variants {
             --tn-bg-color: var(--framework-semantic-canvas-bg-color, var(--framework-canvas-bg));
             --tn-bg-image: var(--framework-semantic-canvas-bg-image, none);
+            @include apply-bg-text(--framework-canvas-text-color, --framework-canvas-text-solid);
             background-color: var(--tn-bg-color);
             background-image: var(--tn-bg-image);
             background-repeat: repeat;
@@ -101,6 +113,7 @@
         @include responsive.with-dark-all-variants {
             --tn-bg-color: var(--framework-semantic-surface-bg-color, var(--framework-surface-bg));
             --tn-bg-image: var(--framework-semantic-surface-bg-image, none);
+            @include apply-bg-text(--framework-canvas-text-color, --framework-canvas-text-solid);
             background-color: var(--tn-bg-color);
             background-image: var(--tn-bg-image);
             background-repeat: repeat;
@@ -112,6 +125,7 @@
         @include responsive.with-dark-all-variants {
             --tn-bg-color: var(--framework-semantic-backdrop-bg-color, var(--framework-backdrop-bg));
             --tn-bg-image: var(--framework-semantic-backdrop-bg-image, none);
+            @include apply-bg-text(--framework-canvas-text-color, --framework-canvas-text-solid);
             background-color: var(--tn-bg-color);
             background-image: var(--tn-bg-image);
             background-repeat: repeat;

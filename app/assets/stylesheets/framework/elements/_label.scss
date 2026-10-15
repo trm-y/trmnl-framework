@@ -9,6 +9,8 @@
 @use 'sass:list';
 @use '../mixins/selector-helpers' as helpers;
 
+// A role's text takes the ink its ground reads best in. The 1-bit rail sets
+// no ink, so there the role keeps its own text color.
 @mixin semantic-label-background($token, $gray-fallback: null) {
     background-color: var(--theme-bg-#{$token}-color, var(--bg-#{$token}-color, var(--#{$token})));
     background-image: var(--theme-bg-#{$token}-image, var(--bg-#{$token}-image, none));
@@ -143,7 +145,7 @@
             &--#{$name} {
                 @include responsive.with-all-variants {
                     @include semantic-label-background($token);
-                    color: var(--framework-semantic-text-inverse-text-solid, var(--framework-semantic-text-inverse-text-color, var(--framework-text-inverse)));
+                    color: var(--theme-bg-#{$token}-ink, var(--bg-#{$token}-ink, var(--framework-semantic-text-inverse-text-solid, var(--framework-semantic-text-inverse-text-color, var(--framework-text-inverse)))));
                     border-radius: vars.corner-scaled(4px);
                     padding: vars.ui-scaled(1px) vars.ui-scaled(5px);
                 }
@@ -154,7 +156,7 @@
             @include responsive.with-all-variants {
                 $success-token: map.get(vars.$semantic-colors, 'success');
                 @include semantic-label-background($success-token);
-                color: var(--framework-semantic-text-primary-text-solid, var(--framework-semantic-text-primary-text-color, var(--framework-text-primary)));
+                color: var(--theme-bg-#{$success-token}-ink, var(--bg-#{$success-token}-ink, var(--framework-semantic-text-primary-text-solid, var(--framework-semantic-text-primary-text-color, var(--framework-text-primary)))));
                 border-radius: vars.corner-scaled(4px);
                 padding: vars.ui-scaled(1px) vars.ui-scaled(5px);
             }
@@ -163,7 +165,7 @@
         &--warning {
             @include responsive.with-all-variants {
                 @include semantic-label-background('yellow');
-                color: var(--framework-semantic-text-primary-text-solid, var(--framework-semantic-text-primary-text-color, var(--framework-text-primary)));
+                color: var(--theme-bg-yellow-ink, var(--bg-yellow-ink, var(--framework-semantic-text-primary-text-solid, var(--framework-semantic-text-primary-text-color, var(--framework-text-primary)))));
                 border-radius: vars.corner-scaled(4px);
                 padding: vars.ui-scaled(1px) vars.ui-scaled(5px);
             }

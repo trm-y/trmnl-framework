@@ -63,6 +63,7 @@
         background-color: var(--framework-semantic-canvas-bg-color, var(--framework-canvas-bg));
         background-image: var(--framework-semantic-canvas-bg-image, none);
         @include mixins.dither-ready;
+        @include mixins.canvas-text;
         color: var(--framework-semantic-text-primary-text-solid, var(--framework-semantic-text-primary-text-color, var(--framework-text-primary)));
     }
 
